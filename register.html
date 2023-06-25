@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <title>User login Page</title>
+    <link rel="stylesheet" type="text/css" href="Form.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+
+        function validateFullName() {
+            let fname = document.getElementById("txtFirstName").value;
+            if ((fname == "") || (fname == null)) {
+                alert("Please Enter First Name !!!");
+                return false;
+            }
+            return true;
+        }
+
+        function validateEmail() {
+
+            const emailInput = document.getElementById('txtEmail');
+
+            emailInput.addEventListener('input', function () {
+                if (emailInput.validity.valid) {
+                    emailInput.setCustomValidity('');
+                } else {
+                    emailInput.setCustomValidity('Please enter a valid email address');
+                }
+            });
+        }
+
+        function validateAll() {
+            if (validateFullName() && validateEmail()) {
+                alert("Successfully created!!!");
+            }
+            else {
+                Event.preventDefault();
+            }
+        }
+
+        function validatePassword() {
+            let pass = document.getElementById("txtPassword").value;
+            let cpass = document.getElementById("txtConfirmPassword").value;
+            if ((pass != cpass) || (pass.length < 5)) {
+                alert("Please Enter a correct Password !!!");
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <img src="images/logo.jpg">
+        <nav>
+            <ul>
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="Product.html">PRODUCTS</a></li>
+                <li><a href="About.html">ABOUT</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+        <div style="margin-left: 45%; display: flex;align-items: center;">
+            <li><a href="login.html"><img src="images/user-icon.png" style="width: 30px; height: 30px"></a></li>
+            <li><a href="cart.html"><img src="images/bag-icon.png" style="width: 30px; height: 30px;"></a></li>
+        </div>
+    </header>
+    <div class="form signup" style="padding-top: 100px;">
+        <span class="title">Registration Form</span>
+        <form action="#">
+            <div class="input-field">
+                <input type="text" name="txtFirstName" id="txtFirstName" placeholder="Enter your name" required>
+                <i class="txtFirstName"></i>
+            </div>
+            <div class="input-field">
+                <input type="email" name="txtEmail" id="txtEmail" placeholder="Enter your email" required>
+                <i class="txtEmail"></i>
+            </div>
+            <div class="input-field">
+                <input type="text" name="txtContact" id="txtContact" placeholder="Enter your contact number" required>
+                <i class="txtContact"></i>
+            </div>
+            <div class="input-field">
+                <input type="password" class="password" name="txtPassword" id="txtPassword"
+                    placeholder="Create a password" required>
+                <i class="txtPassword"></i>
+            </div>
+            <div class="input-field">
+                <input type="password" class="password" name="txtConfirmPassword" id="txtConfirmPassword"
+                    placeholder="Confirm a password" required>
+                <i class="txtConfirmPassword"></i>
+            </div>
+            <div class="checkbox-text">
+                <div class="checkbox-content">
+                    <input type="checkbox" id="termCon">
+                    <label for="termCon" class="text">I accepted all terms and conditions</label>
+                </div>
+            </div>
+            <div class="input-field button">
+                <input type="button" name="btnSubmit" id="btnSubmit" value="Signup" onClick="validateAll()">
+            </div>
+        </form>
+        <div class="login-signup">
+            <span class="text">Already a member?
+                <a href="login.html" class="text login-link">Login Now</a>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

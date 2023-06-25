@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+    <title>GLAMOROUS COSMETICS</title>
+    <link rel="stylesheet" type="text/css" href="cart.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/d86ac3d16c.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <img src="images/logo.jpg">
+        <nav>
+            <ul>
+                <li><a href="Home.html">HOME</a></li>
+                <li><a href="Product.html">PRODUCTS</a></li>
+                <li><a href="About.html">ABOUT</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+        <div style="margin-left: 45%; display: flex;align-items: center;">
+            <li><a href="login.html"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
+            <li><a href="cart.html">
+                    <div class="cart"><i class="fa-solid fa-cart-shopping"></i>
+                        <p id="count">0</p>
+                    </div>
+                </a></li>
+        </div>
+    </header>
+
+    <body>
+        <br><br><br><br><br><br>
+        <div class="container">
+            <div id="root"></div>
+            <div class="sidebar">
+                <div class="head">
+                    <p>My Cart</p>
+                </div>
+                <div id="cartItem">Your cart is empty </div>
+                <div class="foot">
+                    <h3>Total</h3>
+                    <h2 id="total">Rs.00</h2>
+                </div>
+                <br><br>
+                <form action="checkout.html">
+                    <button type="submit" class="btn">Proceed to checkout</button>
+                </form>
+
+            </div>
+
+        </div>
+        <script src="cart.js"></script>
+    </body>
