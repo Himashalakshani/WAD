@@ -3,6 +3,7 @@
 <head>
     <title>GLAMOROUS COSMETICS</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/d86ac3d16c.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -10,16 +11,17 @@
         <img src="images/logo.jpg">
         <nav>
             <ul>
-                <li><a href="Home.html">HOME</a></li>
-                <li><a href="Product.html">PRODUCTS</a></li>
-                <li><a href="About.html"class="active">ABOUT</a></li>
-                <li><a href="Contact.html" >CONTACT</a></li>
+                <li><a href="Home.php">HOME</a></li>
+                <li><a href="Product.php">PRODUCTS</a></li>
+                <li><a href="About.php"class="active">ABOUT</a></li>
+                <li><a href="Contact.php" >CONTACT</a></li>
             </ul>
         </nav>
-        <div style="margin-left: 45%; display: flex;align-items: center;">
-            <li><a href="login.html"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
+        <div style="margin-left: 40%; display: flex;align-items: center;">
+            <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
+            <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
             <li><a href="cart.html"><img src="images/bag-icon.png" style="width: 30px; height: 30px;"></a></li>
-        </div>
+         </div>
     </header>
 
 
