@@ -20,8 +20,8 @@
         <div style="margin-left: 40%; display: flex;align-items: center;">
             <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
             <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
-            <li><a href="cart.html"><img src="images/bag-icon.png" style="width: 30px; height: 30px;"></a></li>
-         </div>
+            <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div></a></li>
+        </div>    
     </header>
 
 

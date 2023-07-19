@@ -13,10 +13,19 @@ if(isset($_POST["submit"])){
       $_SESSION["login"] = true;
       $_SESSION["id"] = $row["id"];
       $userRole = $row["userrole"];
+      $id= $row["id"];
         if($userRole == 0)
+        {
+            $query = "UPDATE tb_user SET login_status = '9652147' WHERE `tb_user`.`id` =  $id";
+            mysqli_query($conn, $query);
             header("Location: home.php");
+        }
         elseif($userRole == 1)
+        {
+            $query = "UPDATE tb_user SET login_status = '9652147' WHERE `tb_user`.`id` =  $id";
+            mysqli_query($conn, $query);
             header("Location: adminpage.php");
+        }
     
     }
     else{
@@ -56,10 +65,9 @@ if(isset($_POST["submit"])){
         <div style="margin-left: 40%; display: flex;align-items: center;">
          <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
          <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
-         <li><a href="cart.html"><img src="images/bag-icon.png" style="width: 30px; height: 30px;"></a></li>
+         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div></a></li>
       </div>
     </header>
-
     <div class="container">
         <div class="forms">
             <div class="form login">
