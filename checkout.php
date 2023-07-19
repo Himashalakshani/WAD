@@ -7,18 +7,15 @@ if(isset($_POST['order_btn'])){
    $number = $_POST['number'];
    $address = $_POST['address'];
    $city = $_POST['city'];
-   $card = $_POST['card'];
-   $card_number = $_POST['card_number'];
-   $exp_month = $_POST['exp_month'];
-   $exp_year = $_POST['exp_year'];
-   $cvv = $_POST['cvv'];
+   $method = $_POST['method'];
+   
    
    
    $result = mysqli_query($conn, "SELECT id FROM tb_user WHERE login_status IS NOT NULL");
    $row = mysqli_fetch_assoc($result);
    $userID = $row['id'];
 
-   $detail_query = mysqli_query($conn, "INSERT INTO `order` (user_id, name, number, address, city, card, card_number, exp_month, exp_year, cvv) VALUES ('$userID','$name','$number','$address','$city','$card','$card_number','$exp_month','$exp_year','$cvv')") or die('query failed');
+   $detail_query = mysqli_query($conn, "INSERT INTO `order` (user_id, name, number, address, city, method) VALUES ('$userID','$name','$number','$address','$city','$method')") or die('query failed');
     
     if ($detail_query) {
         $insertedID = mysqli_insert_id($conn);
@@ -85,24 +82,13 @@ if(isset($_POST['order_btn'])){
                         </div>
 
                         <div class="col-50">
-                            <h3>Payment</h3>
+                            <h3>Payment Method</h3>
 
-                            <label for="cname">Name on Card</label>
-                            <input type="text" id="cname" name="card">
-                            <label for="ccnum">Credit card number</label>
-                            <input type="text" id="ccnum" name="card_number">
-                            <label for="expmonth">Exp Month</label>
-                            <input type="text" id="expmonth" name="exp_month">
-
-                            <div class="row">
-                                <div class="col-50">
-                                    <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="exp_year">
-                                </div>
-                                <div class="col-50">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv">
-                                </div>
+                            <div>
+                                <select name="method" class="select_box">
+                                    <option value="cash on delivery" selected >cash on delivery</option>
+                                    <option value="credit cart">credit cart</option>
+                                </select>
                             </div>
                         </div>
 
