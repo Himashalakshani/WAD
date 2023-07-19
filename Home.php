@@ -32,7 +32,14 @@ else{
       <div style="margin-left: 40%; display: flex;align-items: center;">
          <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
          <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
-         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div></a></li>
+         <?php 
+            $result = mysqli_query($conn, "SELECT COUNT(c.id) AS count FROM cart AS c
+                                          JOIN tb_user AS u ON u.id = c.user_id
+                                          where c.user_id in(SELECT id FROM tb_user WHERE login_status IS NOT NULL) AND c.status = 0");
+            $count = mysqli_fetch_assoc($result);
+            $pCount = $count["count"];
+         ?>
+         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count"><?php echo $pCount?></p></div></a></li>
       </div>
    </header>
 
@@ -82,9 +89,8 @@ else{
                   <p class="product-description">Browse through our collection and find your perfect shade, finish, and
                      formulation.</p>
                   <img src="images/lipstick.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.890</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -94,9 +100,8 @@ else{
                   <p class="product-description">Explore our diverse range of eyeshadow palettes, and let your
                      imagination run wild with the endless eye-catching possibilities they offer. </p>
                   <img src="images/eyeshadow.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.3,950</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -106,9 +111,8 @@ else{
                   <p class="product-description">Start by selecting a shade that matches your skin tone or is slightly
                      lighter</p>
                   <img src="images/concealer.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.1,620</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -118,9 +122,8 @@ else{
                   <p class="product-description">We offer a wide selection of foundation creams that cater to various
                      skin types, tones, and concerns</p>
                   <img src="images/foundation.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.1,750</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -129,9 +132,8 @@ else{
                   <h4 class="product-title">Eye-Liner</h4>
                   <p class="product-description"> Long-lasting eyeliner that stays put throughout the day </p>
                   <img src="images/eyeliner.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.890</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -141,9 +143,8 @@ else{
                   <p class="product-description">Discover our wide range of lip glosses on our website, where you'll
                      find a variety of shades, finishes, and formulations.</p>
                   <img src="images/lipgloss.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.1,250</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -153,9 +154,8 @@ else{
                   <p class="product-description">Elevate your makeup game and achieve professional results with our
                      high-quality brushes that are designed to empower and inspire your beauty routine. </p>
                   <img src="images/brushset.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.2,780</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -165,9 +165,8 @@ else{
                   <p class="product-description">Elevate your makeup game and embrace the luminosity that highlighters
                      bring, accentuating your features and adding a touch of radiance to your beauty routine. </p>
                   <img src="images/highlighters.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  
                </div>
-               <h3 class="price_text">Price Rs.2,250</h3>
             </div>
          </div>
          <div class="col-lg-3" style="padding: 55px;">
@@ -176,10 +175,8 @@ else{
                   <h4 class="product-title">Face Primer</h4>
                   <p class="product-description">You can choose the primer that best suits your skin type and concerns,
                      ensuring a tailored solution that enhances your natural beauty. </p>
-                  <img src="images/faceprimer.jpg" class="image_1">
-                  <button class="add-to-cart">Add to Cart</button>
+                  <img src="images/faceprimer.jpg" class="image_1">   
                </div>
-               <h3 class="price_text">Price Rs.3,760</h3>
             </div>
          </div>
       </div>

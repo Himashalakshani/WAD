@@ -53,7 +53,14 @@ if(isset($_GET['delete_all'])){
       <div style="margin-left: 40%; display: flex;align-items: center;">
          <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
          <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
-         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div></a></li>
+         <?php 
+            $result = mysqli_query($conn, "SELECT COUNT(c.id) AS count FROM cart AS c
+                                          JOIN tb_user AS u ON u.id = c.user_id
+                                          where c.user_id in(SELECT id FROM tb_user WHERE login_status IS NOT NULL) AND c.status = 0");
+            $count = mysqli_fetch_assoc($result);
+            $pCount = $count["count"];
+         ?>
+         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count"><?php echo $pCount?></p></div></a></li>
       </div>
    </header>
 
@@ -82,7 +89,7 @@ if(isset($_GET['delete_all'])){
          
          $select_cart = mysqli_query($conn, "SELECT p.id AS pid,p.name,p.price,p.image,c.quantity,c.user_id,c.id AS cid FROM cart AS c
                                              JOIN products AS p On p.id = c.product_id
-                                             where c.user_id in(SELECT id FROM tb_user WHERE login_status IS NOT NULL)");
+                                             where c.user_id in(SELECT id FROM tb_user WHERE login_status IS NOT NULL) AND c.status = 0");
          $grand_total = 0;
          if(mysqli_num_rows($select_cart) > 0){
             while($fetch_cart = mysqli_fetch_assoc($select_cart)){

@@ -11,17 +11,21 @@ if(isset($_POST['add_to_cart'])){
    $getAuthUserId = mysqli_fetch_assoc($result);
    $userId = $getAuthUserId["id"];
 
-   $insert_product = mysqli_query($conn, "INSERT INTO `cart`(quantity, product_id, user_id) VALUES('$product_quantity', '$product_id', '$userId')");
+   $checkProductAllreadyBuy = mysqli_query($conn, "SELECT id FROM cart WHERE product_id = $product_id AND user_id = $userId AND status = 0");
+   $getData = mysqli_fetch_assoc($checkProductAllreadyBuy);
 
-   
-   if ($insert_product && mysqli_affected_rows($conn) > 0) {
+   if(!empty($getData))
+   {
+      $rowId = $getData["id"];
+      $query = "UPDATE cart SET quantity = quantity + 1 WHERE id = $rowId ";
+        mysqli_query($conn, $query);
+      $message[] = 'Update product quantity.';
+   }
+   else
+   {
+      $insert_product = mysqli_query($conn, "INSERT INTO `cart`(quantity, product_id, user_id) VALUES('$product_quantity', '$product_id', '$userId')");
       $message[] = 'Product added to cart successfully!';
-  } else {
-      $message[] = 'Failed to add product to cart.';
-  }
-   
-
-
+   }
 }
 
 ?>
@@ -48,7 +52,14 @@ if(isset($_POST['add_to_cart'])){
       <div style="margin-left: 40%; display: flex;align-items: center;">
          <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
          <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
-         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div></a></li>
+         <?php 
+            $result = mysqli_query($conn, "SELECT COUNT(c.id) AS count FROM cart AS c
+                                          JOIN tb_user AS u ON u.id = c.user_id
+                                          where c.user_id in(SELECT id FROM tb_user WHERE login_status IS NOT NULL) AND c.status = 0");
+            $count = mysqli_fetch_assoc($result);
+            $pCount = $count["count"];
+         ?>
+         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count"><?php echo $pCount?></p></div></a></li>
       </div>
    </header>
 

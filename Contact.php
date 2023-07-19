@@ -20,7 +20,15 @@
       <div style="margin-left: 40%; display: flex;align-items: center;">
          <li><a href="login.php"><img src="images/user-icon.png" style="width: 30px; height: 30px;"></a></li>
          <li><a href="logout.php"><i class="fa-sharp fa-solid fa-right-from-bracket fa-xl"></i></a></li>
-         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count">0</p></div></a></li>
+         <?php 
+            @include 'config.php';
+            $result = mysqli_query($conn, "SELECT COUNT(c.id) AS count FROM cart AS c
+                                          JOIN tb_user AS u ON u.id = c.user_id
+                                          where c.user_id in(SELECT id FROM tb_user WHERE login_status IS NOT NULL) AND c.status = 0");
+            $count = mysqli_fetch_assoc($result);
+            $pCount = $count["count"];
+         ?>
+         <li><a href="cart.php"><div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id="count"><?php echo $pCount?></p></div></a></li>
       </div>
    </header>
    <div class="contact_section layout_padding">
