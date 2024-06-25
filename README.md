@@ -1,0 +1,1 @@
+Developed a responsive cosmetic shop website using HTML, CSS, JavaScript, PHP, and MySQL. Enabled smooth online shopping with secure checkout, personalized user accounts, and efficient inventory management.
